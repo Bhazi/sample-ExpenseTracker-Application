@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/signUpPage.css" />
+  </head>
+  <body>
+    <div>
+      <form id="loginForm">
+        <label>name</label>
+        <input
+          type="text"
+          name=""
+          id="name"
+          oninvalid="this.setCustomValidity('Enter User Name Here')"
+          oninput="this.setCustomValidity('')"
+          required
+        />
+        <label>Email</label>
+        <input
+          type="email"
+          name=""
+          id="email"
+          oninvalid="this.setCustomValidity('Enter email Here')"
+          oninput="this.setCustomValidity('')"
+          required
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          name=""
+          id="password"
+          oninvalid="this.setCustomValidity('Enter Password Here')"
+          oninput="this.setCustomValidity('')"
+          required
+        />
+        <input id="submit" type="submit" value="Sign Up" />
+      </form>
+    </div>
+    <div id="errorMessage"></div>
+    <!-- <script src="../public/js/signUp.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="/js/signUp.js"></script>
+  </body>
+</html>
