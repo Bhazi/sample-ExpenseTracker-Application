@@ -13,7 +13,7 @@ exports.postLogin = async (req, res) => {
 
   const emailsIsThereOrNot = await Login.findOne({ where: { email: email } });
   if (emailsIsThereOrNot == null) {
-    return res.status(401).json();
+    return res.status(404).json();
   }
 
   //finding password belongs to the email
@@ -28,8 +28,8 @@ exports.postLogin = async (req, res) => {
   obj = JSON.parse(obj);
 
   if (password == obj.password) {
-    res.status(200).json({ message: "Successfully logged" });
+    res.status(200).json({ message: "User login sucessful" });
   } else {
-    res.status(400).json();
+    res.status(401).json();
   }
 };
