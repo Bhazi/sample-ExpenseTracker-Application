@@ -5,6 +5,9 @@ const path = require("path");
 
 const bodyParser = require("body-parser");
 
+const cors = require("cors");
+app.use(cors());
+
 const routes = require("./routes/login");
 const sequelize = require("./util/database");
 
@@ -14,7 +17,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
-// app.listen(4001);
 sequelize
   .sync()
   .then((data) => {

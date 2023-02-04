@@ -7,10 +7,16 @@ exports.getLogin = (req, res) => {
   // res.send("hello");
 };
 
-exports.postData = (req, res) => {
-  Login.create({
+exports.postData = async (req, res) => {
+  await Login.create({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
-  });
+  })
+    .then((response) => {
+      return res.status(201).json();
+    })
+    .catch((err) => {
+      res.status(400).json();
+    });
 };
