@@ -5,7 +5,9 @@ const Login = require("../models/signUp");
 const bcrypt = require("bcrypt");
 
 exports.getLogin = (req, res) => {
-  res.sendFile(path.join(__dirname, "../", "views", "signUpPage.html"));
+  res.sendFile(
+    path.join(__dirname, "../", "views", "authentication", "signUpPage.html")
+  );
   // res.send("hello");
 };
 
@@ -16,18 +18,19 @@ exports.postData = (req, res) => {
     return res.status(400).json();
   }
 
-
-
   bcrypt.hash(req.body.password, 10, async (req, hash) => {
     await Login.create({
       name: name,
       email: email,
       password: hash,
     })
-      .then(res.status(201).json())
+      .then((data) => {
+        res.status(201).json();
+      })
+
       .catch((err) => {
         console.log("already exist the mail");
-        return res.status(401).json();
+        res.status(401).json();
       });
   });
 };

@@ -1,7 +1,7 @@
-#signUpForm {
+#loginForm {
   padding-left: 38px;
-  width: 440px;
-  height: 340px;
+  width: 425px;
+  height: 255px;
   border-radius: 9px;
   display: grid;
   position: absolute;
@@ -19,14 +19,14 @@
 
 h1 {
   font-family: candara;
-  color: rgb(46, 44, 43);
-  margin-bottom: -1rem;
+  color: rgb(100, 95, 92);
+  margin-bottom: -11px;
 }
 
 label {
-  color: rgb(78, 72, 64);
+  color: rgb(73, 72, 70);
   margin-top: 6px;
-  margin-bottom: -29px;
+  margin-bottom: -12px;
   font-family: Leelawadee UI;
 }
 
@@ -40,7 +40,7 @@ input {
   font-size: medium;
   font-weight: 0;
   border-radius: 7px;
-  margin-bottom: -85px;
+  margin-bottom: -20px;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   border: none;
@@ -49,20 +49,22 @@ input {
 
 #submit {
   color: rgb(95, 86, 73);
-  margin-top: 14px;
+  margin-top: 21px;
   font-size: 16px;
-  padding-bottom: 4px;
-  margin-bottom: 3px;
-  width: 110px;
+  width: 80px;
   position: relative;
-  left: 280px;
+  left: 297px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-radius: 8px;
+  border: none;
   height: 30px;
 }
 
 #message {
   color: rgb(226, 86, 86);
   position: relative;
-  left: 705px;
-  top: 455px;
+  left: 680px;
+  top: 370px;
   font-family: Lucida Sans Unicode;
 }

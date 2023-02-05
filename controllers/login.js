@@ -4,7 +4,9 @@ const Login = require("../models/signUp");
 const bcrypt = require("bcrypt");
 
 exports.getLogIn = (req, res) => {
-  res.sendFile(path.join(__dirname, "../", "views", "loginPage.html"));
+  res.sendFile(
+    path.join(__dirname, "../", "views", "authentication", "loginPage.html")
+  );
 };
 
 exports.postLogin = async (req, res) => {
@@ -30,7 +32,10 @@ exports.postLogin = async (req, res) => {
   obj = JSON.parse(obj);
 
   bcrypt.compare(password, obj.password, (err, result) => {
-    if (result) res.status(200).json({ message: "User login sucessful" });
-    else res.status(401).json();
+    if (result) {
+      res.status(200).json({ message: "User login sucessful" });
+    } else {
+      res.status(401).json();
+    }
   });
 };

@@ -10,6 +10,7 @@ app.use(cors());
 
 const signUpRoutes = require("./routes/signUp");
 const loginRoutes = require("./routes/login");
+const expenseTrackerFormRoutes = require("./routes/expenseTracker");
 
 const sequelize = require("./util/database");
 
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(signUpRoutes);
 app.use(loginRoutes);
+app.use("/user", expenseTrackerFormRoutes);
 
 sequelize
   .sync()

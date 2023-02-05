@@ -1,4 +1,4 @@
-document.getElementById("loginForm").addEventListener("submit", submitting);
+document.getElementById("signUpForm").addEventListener("submit", submitting);
 
 function submitting(e) {
   e.preventDefault();
@@ -15,14 +15,15 @@ function submitting(e) {
         password: password,
       })
       .then((response) => {
-        alert("Account successfully created");
+        // alert("Account successfully created");
+        window.location = "http://localhost:4001/login";
       })
       .catch((err) => {
         var parentDiv = document.getElementById("message");
         var errorMessage = document.createElement("p");
 
         if (err.response.status == 401)
-          errorMessage.textContent = "User already exist";
+          errorMessage.textContent = "*User already exist";
         else errorMessage.textContent = "*Inputs Invalid";
 
         parentDiv.appendChild(errorMessage);
