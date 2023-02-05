@@ -1,6 +1,6 @@
-document.getElementById("popo").addEventListener("submit", submitting);
+document.getElementById("popo").addEventListener("submit", submiting);
 
-function submitting(e) {
+function submiting(e) {
   e.preventDefault();
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;

@@ -1,6 +1,8 @@
 const path = require("path");
 const Login = require("../models/signUp");
 
+const bcrypt = require("bcrypt");
+
 exports.getLogIn = (req, res) => {
   res.sendFile(path.join(__dirname, "../", "views", "loginPage.html"));
 };
@@ -27,9 +29,8 @@ exports.postLogin = async (req, res) => {
   var obj = JSON.stringify(passwordFromDb);
   obj = JSON.parse(obj);
 
-  if (password == obj.password) {
-    res.status(200).json({ message: "User login sucessful" });
-  } else {
-    res.status(401).json();
-  }
+  bcrypt.compare(password, obj.password, (err, result) => {
+    if (result) res.status(200).json({ message: "User login sucessful" });
+    else res.status(401).json();
+  });
 };

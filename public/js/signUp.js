@@ -1,7 +1,7 @@
-document.getElementById("loginForm").addEventListener("click", submitting);
+document.getElementById("loginForm").addEventListener("submit", submitting);
 
 function submitting(e) {
-  // e.preventDefault();
+  e.preventDefault();
   var name = document.getElementById("name").value;
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
@@ -14,11 +14,17 @@ function submitting(e) {
         email: email,
         password: password,
       })
-      .then((response) => {})
+      .then((response) => {
+        alert("Account successfully created");
+      })
       .catch((err) => {
-        var parentDiv = document.getElementById("errorMessage");
+        var parentDiv = document.getElementById("message");
         var errorMessage = document.createElement("p");
-        errorMessage.textContent = "User already exist";
+
+        if (err.response.status == 401)
+          errorMessage.textContent = "User already exist";
+        else errorMessage.textContent = "*Inputs Invalid";
+
         parentDiv.appendChild(errorMessage);
       });
   }
