@@ -8,6 +8,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 app.use(cors());
 
+const Expense = require("./models/expenseTracker");
+const Login = require("./models/signUp");
+
 const signUpRoutes = require("./routes/signUp");
 const loginRoutes = require("./routes/login");
 const expenseTrackerFormRoutes = require("./routes/expenseTracker");
@@ -21,6 +24,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(signUpRoutes);
 app.use(loginRoutes);
 app.use("/user", expenseTrackerFormRoutes);
+
+Login.hasMany(Expense);
+Expense.belongsTo(Login);
 
 sequelize
   .sync()

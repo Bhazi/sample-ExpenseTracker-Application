@@ -1,6 +1,6 @@
 const path = require("path");
 const Login = require("../models/signUp");
-
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 exports.getLogIn = (req, res) => {
@@ -22,7 +22,7 @@ exports.postLogin = async (req, res) => {
 
   //finding password belongs to the email
 
-  var attributes = ["password"];
+  var attributes = ["password", "id"];
   const passwordFromDb = await Login.findOne({
     where: { email: email },
     attributes: attributes,
@@ -31,9 +31,19 @@ exports.postLogin = async (req, res) => {
   var obj = JSON.stringify(passwordFromDb);
   obj = JSON.parse(obj);
 
+  //tokenising the ID
+  function tokenising(id) {
+    return jwt.sign(
+      { userId: id },
+      "45asd@asd8a6sd45POsoO0ddw2s9kA56s#o3asd3da22WwoW52326"
+    );
+  }
+
   bcrypt.compare(password, obj.password, (err, result) => {
     if (result) {
-      res.status(200).json({ message: "User login sucessful" });
+      res
+        .status(200)
+        .json({ message: "User login sucessful", token: tokenising(obj.id) });
     } else {
       res.status(401).json();
     }

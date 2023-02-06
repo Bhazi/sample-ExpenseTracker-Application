@@ -2,6 +2,8 @@ document
   .getElementById("expenseTracking")
   .addEventListener("submit", submitting);
 
+const token = localStorage.getItem("Token");
+
 function submitting(e) {
   // e.preventDefault();
   var expense = document.getElementById("expense").value;
@@ -11,13 +13,17 @@ function submitting(e) {
   post();
   async function post() {
     await axios
-      .post(`http://localhost:4001/user/form`, {
-        expense: expense,
-        description: desc,
-        category: categories,
-      })
+      .post(
+        `http://localhost:4001/user/form`,
+        {
+          expense: expense,
+          description: desc,
+          category: categories,
+        },
+        { headers: { Authorization: token } }
+      )
       .then((res) => {
-        window.location = "http://localhost:4001/user/form";
+        // window.location = "http://localhost:4001/user/form";
       })
       .catch((err) => console.log(err));
   }
@@ -26,20 +32,24 @@ function submitting(e) {
 
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    await axios.get("http://localhost:4001/user/getDetails").then((res) => {
-      //heading for no list found !
-      if (res.status == 204) {
-        var elements = document.getElementById("elements");
-        var label = document.createElement("h3");
-        label.textContent = "No list found !";
-        elements.appendChild(label);
-      } else {
-        // displaying elements
-        res.data.allUsers.forEach((element) => {
-          showOnUserScreen(element);
-        });
-      }
-    });
+    await axios
+      .get("http://localhost:4001/user/getDetails", {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        //heading for no list found !
+        if (res.status == 204) {
+          var elements = document.getElementById("elements");
+          var label = document.createElement("h3");
+          label.textContent = "No list found !";
+          elements.appendChild(label);
+        } else {
+          // displaying elements
+          res.data.allUsers.forEach((element) => {
+            showOnUserScreen(element);
+          });
+        }
+      });
   } catch (error) {
     console.log(error);
   }
