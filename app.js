@@ -10,10 +10,12 @@ app.use(cors());
 
 const Expense = require("./models/expenseTracker");
 const Login = require("./models/signUp");
+const Order = require("./models/order");
 
 const signUpRoutes = require("./routes/signUp");
 const loginRoutes = require("./routes/login");
 const expenseTrackerFormRoutes = require("./routes/expenseTracker");
+const purchase = require("./routes/purchase");
 
 const sequelize = require("./util/database");
 
@@ -24,9 +26,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(signUpRoutes);
 app.use(loginRoutes);
 app.use("/user", expenseTrackerFormRoutes);
+app.use("/purchase", purchase);
 
 Login.hasMany(Expense);
 Expense.belongsTo(Login);
+
+Login.hasMany(Order);
+Order.belongsTo(Login);
 
 sequelize
   .sync()

@@ -21,6 +21,7 @@ const loginData = sequelize.define("login", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  ispremiumuser: Sequelize.BOOLEAN,
 });
 
 module.exports = loginData;

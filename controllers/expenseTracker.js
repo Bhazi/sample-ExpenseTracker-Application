@@ -1,6 +1,7 @@
 const Expense = require("../models/expenseTracker");
 const path = require("path");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 exports.getForm = async (req, res) => {
   res.sendFile(
