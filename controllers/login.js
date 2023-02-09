@@ -35,7 +35,7 @@ exports.postLogin = async (req, res) => {
   function tokenising(id) {
     return jwt.sign(
       { userId: id },
-      "45asd@asd8a6sd45POsoO0ddw2s9kA56s#o3asd3da22WwoW52326"
+      '45asd@asd8a6sd45POsoO0ddw2s9kA56s#o3asd3da22WwoW52'
     );
   }
 

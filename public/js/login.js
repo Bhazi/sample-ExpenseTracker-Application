@@ -51,19 +51,17 @@ function submiting(e) {
   }
 }
 
-document.getElementById("rzp-button1").addEventListener("click", clicked);
-
-async function clicked(e) {
+document.getElementById("rzp-button1").addEventListener("click", async (e) => {
   const token = localStorage.getItem("Token");
   const response = await axios.get(
     "http://localhost:4001/purchase/premiummembership",
     { headers: { Authorization: token } }
   );
-  console.log(response);
 
+  console.log(response.data.order.orderId);
   var options = {
     key: response.data.key_id, //Enter the keyID generated from the Dashboard
-    order_id: response.data.order.id, //for one time payment
+    order_id: response.data.order.orderId, //for one time payment
     //this handler function will handle the success payment
     handler: async function (response) {
       await axios.post(
@@ -86,4 +84,4 @@ async function clicked(e) {
     console.log(response);
     alert("Something went wrong");
   });
-}
+});

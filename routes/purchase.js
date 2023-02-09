@@ -2,19 +2,19 @@ const express = require("express");
 
 const purchaseController = require("../controllers/purchase");
 
-const authenticationMiddleware = require("../middleware/auth");
+const authentication = require("../middleware/auth");
 
 const router = express.Router();
 
 router.get(
   "/premiummembership",
-  authenticationMiddleware.getVerifyingIdFromToken,
+  authentication.getVerifyingIdFromToken,
   purchaseController.purchasepremium
 );
 
 router.post(
   "/updatetransactionstatus",
-  authenticationMiddleware.getVerifyingIdFromToken,
+  authentication.getVerifyingIdFromToken,
   purchaseController.updateTransactionStatus
 );
 
