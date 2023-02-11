@@ -11,7 +11,7 @@ function submiting(e) {
         email: email,
       })
       .then((response) => {
-        window.location = "http://localhost:4001/password/forgotPassword"
+        window.location = "http://localhost:4001/login";
       })
       .catch((err) => console.log(err));
   }

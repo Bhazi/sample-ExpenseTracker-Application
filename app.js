@@ -39,7 +39,7 @@ Login.hasMany(Order);
 Order.belongsTo(Login);
 
 sequelize
-  .sync()
+  .sync({ force: false })
   .then((data) => {
     app.listen(4001);
   })

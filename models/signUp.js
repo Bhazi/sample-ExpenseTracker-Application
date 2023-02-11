@@ -22,6 +22,7 @@ const loginData = sequelize.define("login", {
     allowNull: false,
   },
   ispremiumuser: Sequelize.BOOLEAN,
+  totalExpenses: Sequelize.INTEGER,
 });
 
 module.exports = loginData;

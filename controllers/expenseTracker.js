@@ -2,6 +2,7 @@ const Expense = require("../models/expenseTracker");
 const Login = require("../models/signUp");
 const path = require("path");
 const jwt = require("jsonwebtoken");
+const { where } = require("sequelize");
 require("dotenv").config();
 
 exports.getForm = async (req, res) => {
@@ -36,6 +37,19 @@ exports.postForm = async (req, res, next) => {
   const expense = req.body.expense;
   const desc = req.body.description;
   const category = req.body.category;
+
+  var attributes = ["totalExpenses"];
+  const pass = await Login.findOne({
+    where: { id: userId },
+    attributes: attributes,
+  });
+
+  var totalExpensesChanged = pass.dataValues.totalExpenses + parseInt(expense);
+
+  await Login.update(
+    { totalExpenses: totalExpensesChanged },
+    { where: { id: userId } }
+  );
 
   await Expense.create({
     expense: expense,
