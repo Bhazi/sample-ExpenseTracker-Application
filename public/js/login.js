@@ -50,38 +50,3 @@ function submiting(e) {
       });
   }
 }
-
-document.getElementById("rzp-button1").addEventListener("click", async (e) => {
-  const token = localStorage.getItem("Token");
-  const response = await axios.get(
-    "http://localhost:4001/purchase/premiummembership",
-    { headers: { Authorization: token } }
-  );
-
-  console.log(response.data.order.orderId);
-  var options = {
-    key: response.data.key_id, //Enter the keyID generated from the Dashboard
-    order_id: response.data.order.orderId, //for one time payment
-    //this handler function will handle the success payment
-    handler: async function (response) {
-      await axios.post(
-        "http://localhost:4001/purchase/updatetransactionstatus",
-        {
-          order_id: options.order_id,
-          payment_id: response.razorpay_payment_id,
-        },
-        { headers: { Authorization: token } }
-      );
-      alert("You are a premium user Now");
-    },
-  };
-
-  const rzpl = new Razorpay(options);
-  rzpl.open();
-  e.preventDefault();
-
-  rzpl.on("payment failed", function (response) {
-    console.log(response);
-    alert("Something went wrong");
-  });
-});

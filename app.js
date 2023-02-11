@@ -16,6 +16,7 @@ const signUpRoutes = require("./routes/signUp");
 const loginRoutes = require("./routes/login");
 const expenseTrackerFormRoutes = require("./routes/expenseTracker");
 const purchase = require("./routes/purchase");
+const premium = require("./routes/premium");
 
 const sequelize = require("./util/database");
 
@@ -27,6 +28,7 @@ app.use(signUpRoutes);
 app.use(loginRoutes);
 app.use("/user", expenseTrackerFormRoutes);
 app.use("/purchase", purchase);
+app.use(premium);
 
 Login.hasMany(Expense);
 Expense.belongsTo(Login);

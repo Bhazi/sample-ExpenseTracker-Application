@@ -1,4 +1,5 @@
 const Expense = require("../models/expenseTracker");
+const Login = require("../models/signUp");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -11,9 +12,17 @@ exports.getForm = async (req, res) => {
 
 exports.getDetails = async (req, res, next) => {
   const idd = req.user;
+  var attributes = ["ispremiumuser"];
+  const isPremium = await Login.findOne({
+    where: { id: req.user },
+    attributes: attributes,
+  });
   const user = await Expense.findAll({ where: { loginId: idd } });
-  if (user == "") return res.status(204).json();
-  res.status(200).json({ allUsers: user });
+  if (user == "") {
+    return res.status(200).json({ premium: isPremium, datas: null });
+  } else {
+    res.status(200).json({ allUsers: user, premium: isPremium });
+  }
 };
 
 exports.postForm = async (req, res, next) => {
@@ -21,7 +30,7 @@ exports.postForm = async (req, res, next) => {
   const token = req.header("Authorization");
   const userId = jwt.verify(
     token,
-    '45asd@asd8a6sd45POsoO0ddw2s9kA56s#o3asd3da22WwoW52'
+    "45asd@asd8a6sd45POsoO0ddw2s9kA56s#o3asd3da22WwoW52"
   ).userId;
 
   const expense = req.body.expense;

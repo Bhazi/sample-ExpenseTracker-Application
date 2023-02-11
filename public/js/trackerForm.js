@@ -38,12 +38,20 @@ window.addEventListener("DOMContentLoaded", async () => {
       })
       .then((res) => {
         //heading for no list found !
-        if (res.status == 204) {
+        if (res.data.datas === null) {
+
+          //showing PremiumUser
+          premiumOrNot(res);
+
           var elements = document.getElementById("elements");
           var label = document.createElement("h3");
           label.textContent = "No list found !";
           elements.appendChild(label);
+          document.getElementById("leaderboard").style.display = "none";
+          document.getElementById("lists").style.display = "none";
         } else {
+          //showing premiumUser
+          premiumOrNot(res);
           // displaying elements
           res.data.allUsers.forEach((element) => {
             showOnUserScreen(element);
@@ -85,4 +93,57 @@ function deleting(id) {
 function removeFromScreen(id) {
   var parentNode = document.getElementById("elements");
   parentNode.removeChild(document.getElementById(id));
+}
+
+document.getElementById("rzp-button1").addEventListener("click", async (e) => {
+  const token = localStorage.getItem("Token");
+  const response = await axios.get(
+    "http://localhost:4001/purchase/premiummembership",
+    { headers: { Authorization: token } }
+  );
+
+  console.log(response.data.order.orderId);
+  var options = {
+    key: response.data.key_id, //Enter the keyID generated from the Dashboard
+    order_id: response.data.order.orderId, //for one time payment
+    //this handler function will handle the success payment
+    handler: async function (response) {
+      await axios.post(
+        "http://localhost:4001/purchase/updatetransactionstatus",
+        {
+          order_id: options.order_id,
+          payment_id: response.razorpay_payment_id,
+        },
+        { headers: { Authorization: token } }
+      );
+      alert("You are a premium user Now");
+      const premium = document.getElementById("premium");
+      const p = document.createElement("p");
+      p.textContent = "You are a premium user";
+      p.id = "premium_user";
+      premium.appendChild(p);
+      document.getElementById("rzp-button1").style.display = "none";
+    },
+  };
+
+  const rzpl = new Razorpay(options);
+  rzpl.open();
+
+  rzpl.on("payment failed", function (response) {
+    console.log(response);
+    alert("Something went wrong");
+  });
+});
+
+function premiumOrNot(datas) {
+  if (datas.data.premium.ispremiumuser == true) {
+    const premium = document.getElementById("premium");
+    const p = document.createElement("p");
+    p.textContent = "You are a premium user";
+    p.id = "premium_user";
+    premium.appendChild(p);
+    document.getElementById("rzp-button1").style.display = "none";
+  } else {
+    document.getElementById("rzp-button1").style.display = "block";
+  }
 }
