@@ -39,7 +39,6 @@ window.addEventListener("DOMContentLoaded", async () => {
       .then((res) => {
         //heading for no list found !
         if (res.data.datas === null) {
-
           //showing PremiumUser
           premiumOrNot(res);
 
@@ -47,7 +46,6 @@ window.addEventListener("DOMContentLoaded", async () => {
           var label = document.createElement("h3");
           label.textContent = "No list found !";
           elements.appendChild(label);
-          document.getElementById("leaderboard").style.display = "none";
           document.getElementById("lists").style.display = "none";
         } else {
           //showing premiumUser
