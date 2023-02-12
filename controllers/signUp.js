@@ -1,7 +1,5 @@
 const path = require("path");
-
 const Login = require("../models/signUp");
-
 const bcrypt = require("bcrypt");
 
 exports.getLogin = (req, res) => {

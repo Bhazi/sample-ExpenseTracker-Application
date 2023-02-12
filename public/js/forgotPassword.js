@@ -1,9 +1,7 @@
-document.getElementById("forgotForm").addEventListener("submit", submiting);
-
-function submiting(e) {
-  e.preventDefault();
+document.getElementById("forgotForm").addEventListener("submit", submittting);
+function submittting(e) {
+  // e.preventDefault();
   var email = document.getElementById("email").value;
-
   post();
   async function post() {
     await axios

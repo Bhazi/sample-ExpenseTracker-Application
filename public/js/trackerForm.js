@@ -70,7 +70,7 @@ function showOnUserScreen(data) {
   var deleteButton = document.createElement("button");
   deleteButton.id = "delete";
   deleteButton.onclick = function () {
-    deleting(data.id);
+    deleting(data.id, data.expense);
   };
   deleteButton.className = "btn btn-outline-danger";
   deleteButton.appendChild(document.createTextNode("Delete"));
@@ -79,10 +79,13 @@ function showOnUserScreen(data) {
   elements.appendChild(label);
 }
 
-function deleting(id) {
+function deleting(id, expense) {
   axios
-    .delete(`http://localhost:4001/user/delete/${id}`)
+    .delete(`http://localhost:4001/user/delete/${id}/${expense}`, {
+      headers: { Authorization: token },
+    })
     .then((res) => {
+      window.location = "http://localhost:4001/user/form";
       removeFromScreen(id);
     })
     .catch((err) => console.log(err));

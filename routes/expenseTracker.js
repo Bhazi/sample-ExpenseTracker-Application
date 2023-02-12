@@ -17,6 +17,6 @@ router.get(
 
 // router.put("/edit/:id", mainController.editElement);
 
-router.delete("/delete/:id", mainController.deleteElement);
+router.delete("/delete/:id/:expense", mainController.deleteElement);
 
 module.exports = router;

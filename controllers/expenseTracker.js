@@ -61,6 +61,26 @@ exports.postForm = async (req, res, next) => {
 };
 
 exports.deleteElement = async (req, res, next) => {
+  const token = req.header("Authorization");
+  const expense = req.params.expense;
+  const userId = jwt.verify(
+    token,
+    "45asd@asd8a6sd45POsoO0ddw2s9kA56s#o3asd3da22WwoW52"
+  ).userId;
+
+  var attributes = ["totalExpenses"];
+  const pass = await Login.findOne({
+    where: { id: userId },
+    attributes: attributes,
+  });
+
+  var totalExpensesChanged = pass.dataValues.totalExpenses - parseInt(expense);
+
+  await Login.update(
+    { totalExpenses: totalExpensesChanged },
+    { where: { id: userId } }
+  );
+
   try {
     const uId = req.params.id;
     await Expense.destroy({ where: { id: uId } });
