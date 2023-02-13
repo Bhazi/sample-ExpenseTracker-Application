@@ -14,7 +14,9 @@ h3 {
   );
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
+
   height: 85px;
+  position: relative;
 }
 
 #expenseTracking label {
@@ -23,25 +25,28 @@ h3 {
   margin-left: 19px;
   padding-left: 44px;
 }
-
 #elements p {
+  position: relative;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  margin-top: 9px;
   margin-bottom: 9px;
-  /* margin-left: 23px; */
+  margin-left: 13px;
+  margin-top: 12px;
   width: 49%;
   font-size: 16px;
   font-family: Segoe UI Emoji;
+  align-items: center;
+  height: 50px;
   padding-left: 35px;
   padding-top: 9px;
-  padding-bottom: 17px;
+  /* padding-bottom: 17px; */
   border-radius: 12px;
 }
 #delete {
   position: absolute;
   left: 587px;
   font-size: 0.81rem;
+  /* margin-bottom: 12px; */
   /* background-color: rgb(238, 225, 225); */
 }
 
@@ -77,8 +82,8 @@ options {
   margin-left: 30px;
   padding-right: 12px;
   height: 29px;
-  align-items: center;
   cursor: pointer;
+  width: 110px;
 }
 
 #rzp-button1 {
@@ -95,16 +100,16 @@ options {
 }
 
 #premium_user {
-  margin-top: 6px;
+  top: 90px;
   font-size: 16px;
-  position: relative;
-  left: 87%;
+  position: absolute;
+  left: 86%;
 }
 
 #lists {
   position: relative;
   left: 12px;
-  margin-bottom: 12px;
+  margin-top: 12px;
   border-bottom: 2px solid;
   border-color: rgb(196, 192, 192);
   width: 50px;
@@ -119,7 +124,7 @@ options {
 }
 
 #showLeaderBoard {
-  margin-top: 45px;
+  margin-top: 15px;
   position: relative;
   font-size: small;
   left: 12px;
@@ -139,4 +144,30 @@ options {
   padding-top: 9px;
   padding-bottom: 17px;
   border-radius: 12px;
+}
+
+#downloadFile {
+  font-size: 16px;
+  width: 130px;
+  position: absolute;
+  left: 89%;
+  border-radius: 5px;
+  background-color: rgb(243, 241, 241);
+  border: none;
+  height: 30px;
+  cursor: pointer;
+  margin-top: 51px;
+}
+
+#fileDownloaded {
+  margin-top: 91px;
+  font-size: 15px;
+  width: 190px;
+  position: absolute;
+  left: 85%;
+  border-radius: 7px;
+  background-color: rgb(243, 241, 241);
+  border: none;
+  height: 30px;
+  cursor: pointer;
 }

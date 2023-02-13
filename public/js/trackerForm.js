@@ -141,10 +141,15 @@ function premiumOrNot(datas) {
     const premium = document.getElementById("premium");
     const p = document.createElement("p");
     p.textContent = "You are a premium user";
+    p.style.fontWeight = "600";
     p.id = "premium_user";
     premium.appendChild(p);
     document.getElementById("rzp-button1").style.display = "none";
+    document.getElementById("downloadFile").style.display = "block";
+    document.getElementById("fileDownloaded").style.display = "block";
   } else {
     document.getElementById("rzp-button1").style.display = "block";
+    document.getElementById("downloadFile").style.display = "none";
+    document.getElementById("fileDownloaded").style.display = "none";
   }
 }

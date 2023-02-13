@@ -18,7 +18,7 @@
 }
 
 h1 {
-  font-family: candara;
+  font-family: "Bitter", serif;
   color: rgb(46, 44, 43);
   margin-bottom: -1rem;
 }
@@ -51,11 +51,12 @@ input {
   color: rgb(95, 86, 73);
   margin-top: 14px;
   font-size: 16px;
+  padding-left: 6px;
   padding-bottom: 4px;
   margin-bottom: 3px;
-  width: 110px;
+  width: 80px;
   position: relative;
-  left: 280px;
+  left: 310px;
   height: 30px;
 }
 

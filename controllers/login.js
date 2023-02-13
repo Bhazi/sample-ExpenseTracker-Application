@@ -22,7 +22,7 @@ exports.postLogin = async (req, res) => {
 
   //finding password belongs to the email
 
-  var attributes = ["password", "id"];
+  var attributes = ["password", "id", "name"];
   const passwordFromDb = await Login.findOne({
     where: { email: email },
     attributes: attributes,
@@ -32,18 +32,19 @@ exports.postLogin = async (req, res) => {
   obj = JSON.parse(obj);
 
   //tokenising the ID
-  function tokenising(id) {
+  function tokenising(id, name) {
     return jwt.sign(
-      { userId: id },
-      '45asd@asd8a6sd45POsoO0ddw2s9kA56s#o3asd3da22WwoW52'
+      { userId: id, names: name },
+      "45asd@asd8a6sd45POsoO0ddw2s9kA56s#o3asd3da22WwoW52"
     );
   }
 
   bcrypt.compare(password, obj.password, (err, result) => {
     if (result) {
-      res
-        .status(200)
-        .json({ message: "User login sucessful", token: tokenising(obj.id) });
+      res.status(200).json({
+        message: "User login sucessful",
+        token: tokenising(obj.id, obj.name),
+      });
     } else {
       res.status(401).json();
     }

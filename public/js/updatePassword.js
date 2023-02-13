@@ -21,7 +21,7 @@ document
         )
         .then((response) => {
           console.log(response);
-          //   window.location = "http://localhost:4001/login";
+            window.location = "http://localhost:4001/login";
         })
         .catch((err) => console.log(err));
     } else {

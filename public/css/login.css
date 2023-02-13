@@ -18,15 +18,15 @@
 }
 
 h1 {
-  font-family: candara;
-  color: rgb(46, 44, 43);
-  margin-bottom: -11px;
+  font-family: "Bitter", serif;
+  color: rgb(90, 87, 86);
+  margin-bottom: -4px;
 }
 
 label {
   color: rgb(73, 72, 70);
-  margin-top: 6px;
-  margin-bottom: -12px;
+  margin-top: 12px;
+  margin-bottom: -6px;
   font-family: Leelawadee UI;
 }
 
