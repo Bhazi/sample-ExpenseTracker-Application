@@ -3,6 +3,7 @@ const Login = require("../models/signUp");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 const { where } = require("sequelize");
+const { type } = require("os");
 require("dotenv").config();
 
 exports.getForm = async (req, res) => {
@@ -19,17 +20,19 @@ exports.getDetails = async (req, res, next) => {
     attributes: attributes,
   });
 
-  const page = parseInt(req.params.page);
-  console.log(page);
-  const ITEMS_PER_PAGE = 10;
+  const page = parseInt(req.query.page);
+  const ITEMS_PER_PAGE = parseInt(req.query.limit);
 
-  var totalCount = await Expense.count();
-  // var total = Math.round(counts / 7);
+  var totalCount = await Expense.count({ where: { loginId: idd } });
 
   const user = await Expense.findAll({
     where: { loginId: idd },
     offset: (page - 1) * ITEMS_PER_PAGE,
     limit: ITEMS_PER_PAGE,
+  });
+
+  user.forEach((data) => {
+    console.log(data);
   });
   if (user == "") {
     return res.status(200).json({ premium: isPremium, datas: null });

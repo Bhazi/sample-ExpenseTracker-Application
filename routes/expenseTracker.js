@@ -10,7 +10,7 @@ router.get("/form", mainController.getForm);
 router.post("/form", mainController.postForm);
 
 router.get(
-  "/getDetails/:page",
+  "/getDetails",
   authentication.getVerifyingIdFromToken,
   mainController.getDetails
 );

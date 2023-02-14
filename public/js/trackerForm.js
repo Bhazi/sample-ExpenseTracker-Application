@@ -28,15 +28,26 @@ function submitting(e) {
       .catch((err) => console.log(err));
   }
 }
-// }
+
+//assigning limit of page contents
+let limit;
+document.getElementById("rowsPerPage").addEventListener("change", (event) => {
+  limit = event.target.value;
+  localStorage.setItem("limit", limit);
+  location.reload();
+});
 
 window.addEventListener("DOMContentLoaded", async () => {
   const page = 1;
+  const limitValue = localStorage.getItem("limit");
   try {
     await axios
-      .get(`http://localhost:4001/user/getDetails/${page}`, {
-        headers: { Authorization: token },
-      })
+      .get(
+        `http://localhost:4001/user/getDetails?page=${page}&limit=${limitValue}`,
+        {
+          headers: { Authorization: token },
+        }
+      )
       .then((res) => {
         console.log(res);
         showPagination(res.data);
@@ -88,7 +99,7 @@ function deleting(id, expense) {
       headers: { Authorization: token },
     })
     .then((res) => {
-      window.location = "http://localhost:4001/user/form";
+      // window.location = "http://localhost:4001/user/form";
       removeFromScreen(id);
     })
     .catch((err) => console.log(err));
@@ -194,10 +205,14 @@ function showPagination({
 function getProducts(page) {
   var elements = document.getElementById("elements");
   elements.innerHTML = " ";
+  const limitValue = localStorage.getItem("limit");
   axios
-    .get(`http://localhost:4001/user/getDetails/${page}`, {
-      headers: { Authorization: token },
-    })
+    .get(
+      `http://localhost:4001/user/getDetails?page=${page}&limit=${limitValue}`,
+      {
+        headers: { Authorization: token },
+      }
+    )
     .then((datass) => {
       datass.data.allUsers.forEach((element) => {
         console.log(datass);
