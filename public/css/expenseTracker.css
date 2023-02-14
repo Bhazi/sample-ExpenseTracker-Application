@@ -171,3 +171,9 @@ options {
   height: 30px;
   cursor: pointer;
 }
+
+#pagination {
+  margin-top: 20px;
+  position: relative;
+  left: 300px;
+}

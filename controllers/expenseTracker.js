@@ -18,11 +18,32 @@ exports.getDetails = async (req, res, next) => {
     where: { id: req.user },
     attributes: attributes,
   });
-  const user = await Expense.findAll({ where: { loginId: idd } });
+
+  const page = parseInt(req.params.page);
+  console.log(page);
+  const ITEMS_PER_PAGE = 10;
+
+  var totalCount = await Expense.count();
+  // var total = Math.round(counts / 7);
+
+  const user = await Expense.findAll({
+    where: { loginId: idd },
+    offset: (page - 1) * ITEMS_PER_PAGE,
+    limit: ITEMS_PER_PAGE,
+  });
   if (user == "") {
     return res.status(200).json({ premium: isPremium, datas: null });
   } else {
-    res.status(200).json({ allUsers: user, premium: isPremium });
+    res.status(200).json({
+      allUsers: user,
+      currentPage: page,
+      hasNextPage: ITEMS_PER_PAGE * page < totalCount,
+      nextPage: page + 1,
+      hasPreviousPage: page > 1,
+      previousPage: page - 1,
+      lastPage: Math.ceil(totalCount / ITEMS_PER_PAGE),
+      premium: isPremium,
+    });
   }
 };
 

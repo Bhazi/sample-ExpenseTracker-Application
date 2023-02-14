@@ -31,12 +31,15 @@ function submitting(e) {
 // }
 
 window.addEventListener("DOMContentLoaded", async () => {
+  const page = 1;
   try {
     await axios
-      .get("http://localhost:4001/user/getDetails", {
+      .get(`http://localhost:4001/user/getDetails/${page}`, {
         headers: { Authorization: token },
       })
       .then((res) => {
+        console.log(res);
+        showPagination(res.data);
         //heading for no list found !
         if (res.data.datas === null) {
           //showing PremiumUser
@@ -152,4 +155,56 @@ function premiumOrNot(datas) {
     document.getElementById("downloadFile").style.display = "none";
     document.getElementById("fileDownloaded").style.display = "none";
   }
+}
+
+function showPagination({
+  currentPage,
+  hasNextPage,
+  nextPage,
+  hasPreviousPage,
+  previousPage,
+  lastPage,
+}) {
+  pagination.innerHTML = "";
+  if (hasPreviousPage) {
+    const btn1 = document.createElement("button");
+    btn1.innerHTML = previousPage;
+    btn1.className = "btn btn-sm btn-outline-secondary";
+    btn1.style.marginRight = "7px";
+    btn1.addEventListener("click", () => getProducts(previousPage));
+    pagination.appendChild(btn1);
+  }
+  const btn2 = document.createElement("button");
+  btn2.innerHTML = currentPage;
+  btn2.className = "btn btn-sm btn-outline-secondary";
+  btn2.style.marginRight = "7px";
+  btn2.addEventListener("click", () => getProducts(currentPage));
+  pagination.appendChild(btn2);
+
+  if (hasNextPage) {
+    const btn3 = document.createElement("button");
+    btn3.innerHTML = nextPage;
+    btn3.className = "btn btn-sm btn-outline-secondary";
+    btn3.style.marginRight = "7px";
+    btn3.addEventListener("click", () => getProducts(nextPage));
+    pagination.appendChild(btn3);
+  }
+}
+
+function getProducts(page) {
+  var elements = document.getElementById("elements");
+  elements.innerHTML = " ";
+  axios
+    .get(`http://localhost:4001/user/getDetails/${page}`, {
+      headers: { Authorization: token },
+    })
+    .then((datass) => {
+      datass.data.allUsers.forEach((element) => {
+        console.log(datass);
+        showOnUserScreen(element);
+        showPagination(datass.data);
+      });
+      // showOnUserScreen(products);
+    })
+    .catch((err) => console.log(err));
 }
