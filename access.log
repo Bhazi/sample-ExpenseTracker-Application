@@ -1,0 +1,2 @@
+::1 - - [14/Feb/2023:17:13:40 +0000] "GET /user/form HTTP/1.1" 304 -
+::1 - - [14/Feb/2023:17:13:41 +0000] "GET /user/getDetails?page=1&limit=10 HTTP/1.1" 304 -
