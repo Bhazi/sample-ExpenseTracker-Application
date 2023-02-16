@@ -11,6 +11,12 @@
       integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/css/expenseTracker.css" />
     <title>Expense Tracker</title>
   </head>
@@ -63,8 +69,10 @@
       <button id="fileDownloaded">List of file downloaded</button>
     </div>
     <div>
-      <label for="" style="margin-left: 16px; margin-top: 19px"
-        >Rows Per Page</label
+      <label
+        for=""
+        style="margin-left: 30px; margin-top: 19px; margin-right: 12px"
+        >Rows Per Page :</label
       >
       <select id="rowsPerPage" class="form-select form-select-lg">
         <option value="">select</option>
@@ -76,8 +84,15 @@
     </div>
     <div id="contents">
       <div>
-        <h4 id="lists">Lists</h4>
-        <div id="elements"></div>
+        <div id="elements">
+          <table id="table">
+            <tr id="heading">
+              <th>Expense</th>
+              <th>Description</th>
+              <th>Category</th>
+            </tr>
+          </table>
+        </div>
       </div>
       <div id="pagination"></div>
       <div>

@@ -2,6 +2,7 @@ const path = require("path");
 const Login = require("../models/signUp");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 
 exports.getLogIn = (req, res) => {
   res.sendFile(
@@ -33,10 +34,7 @@ exports.postLogin = async (req, res) => {
 
   //tokenising the ID
   function tokenising(id, name) {
-    return jwt.sign(
-      { userId: id, names: name },
-      "45asd@asd8a6sd45POsoO0ddw2s9kA56s#o3asd3da22WwoW52"
-    );
+    return jwt.sign({ userId: id, names: name }, process.env.TOKEN_SECRET);
   }
 
   bcrypt.compare(password, obj.password, (err, result) => {

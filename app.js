@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 app.use(cors());
 
-const helmet = require("helmet");
+// const helmet = require("helmet");
 const morgan = require("morgan");
 
 //Models
@@ -32,20 +32,29 @@ const sequelize = require("./util/database");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: false,
+//     crossOriginResourcePolicy: false,
+//   })
+// );
+// log only 4xx and 5xx responses to console
 app.use(
-  helmet({
-    contentSecurityPolicy: false,
+  morgan("dev", {
+    skip: function (req, res) {
+      return res.statusCode < 400;
+    },
   })
 );
-// log only 4xx and 5xx responses to console
-app.use(morgan('dev', {
-  skip: function (req, res) { return res.statusCode < 400 }
-}))
- 
+
 // log all requests to access.log
-app.use(morgan('common', {
-  stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
-}))
+app.use(
+  morgan("common", {
+    stream: fs.createWriteStream(path.join(__dirname, "access.log"), {
+      flags: "a",
+    }),
+  })
+);
 
 app.use(signUpRoutes);
 app.use(loginRoutes);

@@ -76,11 +76,22 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 function showOnUserScreen(data) {
-  var elements = document.getElementById("elements");
-  var label = document.createElement("p");
-  label.id = data.id;
-  label.textContent = `${data.expense}\u00A0\u00A0\u00A0\u00A0-\u00A0\u00A0\u00A0\u00A0${data.description}\u00A0\u00A0\u00A0\u00A0-\u00A0\u00A0\u00A0\u00A0${data.category}`;
+  var table = document.getElementById("table");
+  var tr = document.createElement("tr");
+  tr.id = data.id;
+  var tdExpense = document.createElement("td");
+  var tdDescription = document.createElement("td");
+  var tdCategory = document.createElement("td");
+  tdExpense.textContent = data.expense.toLocaleString("en-US");
+  tdDescription.textContent = data.description;
+  tdCategory.textContent = data.category;
+  tr.appendChild(tdExpense);
+  tr.appendChild(tdDescription);
+  tr.appendChild(tdCategory);
+  table.appendChild(tr);
 
+  var tdDelete = document.createElement("td");
+  tdDelete.id = "deleteId";
   var deleteButton = document.createElement("button");
   deleteButton.id = "delete";
   deleteButton.onclick = function () {
@@ -88,9 +99,8 @@ function showOnUserScreen(data) {
   };
   deleteButton.className = "btn btn-outline-danger";
   deleteButton.appendChild(document.createTextNode("Delete"));
-  label.appendChild(deleteButton);
-
-  elements.appendChild(label);
+  tr.appendChild(tdDelete);
+  tdDelete.appendChild(deleteButton);
 }
 
 function deleting(id, expense) {
@@ -99,14 +109,13 @@ function deleting(id, expense) {
       headers: { Authorization: token },
     })
     .then((res) => {
-      // window.location = "http://localhost:4001/user/form";
       removeFromScreen(id);
     })
     .catch((err) => console.log(err));
 }
 
 function removeFromScreen(id) {
-  var parentNode = document.getElementById("elements");
+  var parentNode = document.getElementById("table");
   parentNode.removeChild(document.getElementById(id));
 }
 
@@ -132,12 +141,14 @@ document.getElementById("rzp-button1").addEventListener("click", async (e) => {
         { headers: { Authorization: token } }
       );
       alert("You are a premium user Now");
-      const premium = document.getElementById("premium");
-      const p = document.createElement("p");
-      p.textContent = "You are a premium user";
-      p.id = "premium_user";
-      premium.appendChild(p);
-      document.getElementById("rzp-button1").style.display = "none";
+      window.location="http://localhost:4001/user/form"
+      // const premium = document.getElementById("premium");
+      // const p = document.createElement("p");
+      // p.textContent = "You are a premium user";
+      // p.id = "premium_user";
+      // premium.appendChild(p);
+      // document.getElementById("rzp-button1").style.display = "none";
+
     },
   };
 
@@ -203,8 +214,14 @@ function showPagination({
 }
 
 function getProducts(page) {
-  var elements = document.getElementById("elements");
-  elements.innerHTML = " ";
+  // var assas = document.querySelectorAll("table");
+  // table.innerHTML = " ";
+  const table = document.getElementById("table");
+
+  // remove all rows except for the header row
+  while (table.rows.length > 1) {
+    table.deleteRow(1);
+  }
   const limitValue = localStorage.getItem("limit");
   axios
     .get(

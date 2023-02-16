@@ -31,9 +31,6 @@ exports.getDetails = async (req, res, next) => {
     limit: ITEMS_PER_PAGE,
   });
 
-  user.forEach((data) => {
-    console.log(data);
-  });
   if (user == "") {
     return res.status(200).json({ premium: isPremium, datas: null });
   } else {

@@ -1,12 +1,13 @@
 const Razorpay = require("razorpay");
 const Order = require("../models/order");
 const Login = require("../models/signUp");
+require("dotenv").config();
 
 const purchasepremium = async (req, res, next) => {
   try {
     var rzp = new Razorpay({
-      key_id: "rzp_test_Zj6wKV0d06yPFz",
-      key_secret: "9WErJqfYS4qyuFHzLFpZn1vK",
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_KEY_SECRET,
     });
     const amount = 2500;
     const order = await rzp.orders.create({ amount, currency: "INR" });
