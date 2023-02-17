@@ -2,7 +2,7 @@ document
   .getElementById("showLeaderBoard")
   .addEventListener("click", async () => {
     axios
-      .get("http://localhost:4001/premium/leaderboard")
+      .get("http://184.72.72.11:4001/premium/leaderboard")
       .then((result) => {
         result.data.values.forEach((ress) => {
           // console.log(ress.loginId);

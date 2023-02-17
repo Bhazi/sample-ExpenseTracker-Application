@@ -8,7 +8,7 @@ function submiting(e) {
   put();
   async function put() {
     await axios
-      .post(`http://localhost:4001/login`, {
+      .post(`http://184.72.72.11:4001/login`, {
         email: email,
         password: password,
       })
@@ -16,7 +16,7 @@ function submiting(e) {
         // alert("User logged successfully");
         console.log(response);
         localStorage.setItem("Token", response.data.token);
-        window.location = "http://localhost:4001/user/form";
+        window.location = "http://184.72.72.11:4001/user/form";
         // var message = document.getElementById("message");
         // var p = document.createElement("p");
         // p.textContent = response.data.message;
@@ -42,7 +42,7 @@ function submiting(e) {
         // async function f() {
         //   return Promise.resolve(
         //     setTimeout(
-        //       () => (window.location = "http://localhost:4001/login"),
+        //       () => (window.location = "http://184.72.72.11:4001/login"),
         //       1000
         //     )
         //   );

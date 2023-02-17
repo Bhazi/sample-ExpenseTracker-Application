@@ -5,11 +5,11 @@ function submittting(e) {
   post();
   async function post() {
     await axios
-      .post(`http://localhost:4001/password/forgotPassword`, {
+      .post(`http://184.72.72.11:4001/password/forgotPassword`, {
         email: email,
       })
       .then((response) => {
-        window.location = "http://localhost:4001/login";
+        window.location = "http://184.72.72.11:4001/login";
       })
       .catch((err) => console.log(err));
   }

@@ -81,6 +81,6 @@ FilesDownloaded.belongsTo(Login);
 sequelize
   .sync({ force: false })
   .then((data) => {
-    app.listen(4001);
+    app.listen(3000);
   })
   .catch((err) => console.log(err));
