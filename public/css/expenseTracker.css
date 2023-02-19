@@ -1,7 +1,7 @@
 h3 {
-  position: absolute;
+  position: relative;
   left: 13px;
-  top: 120px;
+  /* top: 120px; */
 }
 
 #formSection {
@@ -90,14 +90,14 @@ options {
   left: 86%;
 }
 
-#lists {
+/* #lists {
   position: relative;
   left: 12px;
   margin-top: 12px;
   border-bottom: 2px solid;
   border-color: rgb(196, 192, 192);
   width: 50px;
-}
+} */
 
 #leaderboard {
   position: relative;

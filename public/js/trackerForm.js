@@ -56,6 +56,9 @@ window.addEventListener("DOMContentLoaded", async () => {
           //showing PremiumUser
           premiumOrNot(res);
 
+          document.getElementById("table").style.display = "none";
+          document.getElementById("pagination").style.display = "none";
+
           var elements = document.getElementById("elements");
           var label = document.createElement("h3");
           label.textContent = "No list found !";
