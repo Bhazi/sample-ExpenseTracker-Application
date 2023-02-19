@@ -49,7 +49,7 @@ exports.postForgotPassword = async (req, res) => {
       textContent: `
     for reset your password click this link {{params.role}}`,
       params: {
-        role: `http://184.72.72.11:4001/password/resetpassword/${uuidNumber}`,
+        role: `http://3.94.179.87:4001/password/resetpassword/${uuidNumber}`,
       },
     })
     .then((data) => {

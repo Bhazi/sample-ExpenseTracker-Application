@@ -9,14 +9,14 @@ function submitting(e) {
   put();
   async function put() {
     await axios
-      .post(`http://184.72.72.11:4001/`, {
+      .post(`http://3.94.179.87:4001/`, {
         name: name,
         email: email,
         password: password,
       })
       .then((response) => {
         // alert("Account successfully created");
-        window.location = "http://184.72.72.11:4001/login";
+        window.location = "http://3.94.179.87:4001/login";
       })
       .catch((err) => {
         var parentDiv = document.getElementById("message");

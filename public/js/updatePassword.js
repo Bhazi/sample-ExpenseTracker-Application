@@ -11,7 +11,7 @@ document
       const token = localStorage.getItem("Token");
       await axios
         .post(
-          `http://184.72.72.11:4001/password/resetpassword/${value1}`,
+          `http://3.94.179.87:4001/password/resetpassword/${value1}`,
           {
             password: passwordOne,
           },
@@ -21,7 +21,7 @@ document
         )
         .then((response) => {
           console.log(response);
-          window.location = "http://184.72.72.11:4001/login";
+          window.location = "http://3.94.179.87:4001/login";
         })
         .catch((err) => console.log(err));
     } else {

@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("Token");
   await axios
-    .get("http://184.72.72.11:4001/downloaded/links", {
+    .get("http://3.94.179.87:4001/downloaded/links", {
       headers: { Authorization: token },
     })
     .then((response) => {

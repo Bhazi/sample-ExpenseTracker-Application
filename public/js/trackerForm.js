@@ -14,7 +14,7 @@ function submitting(e) {
   async function post() {
     await axios
       .post(
-        `http://184.72.72.11:4001/user/form`,
+        `http://3.94.179.87:4001/user/form`,
         {
           expense: expense,
           description: desc,
@@ -23,7 +23,7 @@ function submitting(e) {
         { headers: { Authorization: token } }
       )
       .then((res) => {
-        // window.location = "http://184.72.72.11:4001/user/form";
+        // window.location = "http://3.94.179.87:4001/user/form";
       })
       .catch((err) => console.log(err));
   }
@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   try {
     await axios
       .get(
-        `http://184.72.72.11:4001/user/getDetails?page=${page}&limit=${limitValue}`,
+        `http://3.94.179.87:4001/user/getDetails?page=${page}&limit=${limitValue}`,
         {
           headers: { Authorization: token },
         }
@@ -108,7 +108,7 @@ function showOnUserScreen(data) {
 
 function deleting(id, expense) {
   axios
-    .delete(`http://184.72.72.11:4001/user/delete/${id}/${expense}`, {
+    .delete(`http://3.94.179.87:4001/user/delete/${id}/${expense}`, {
       headers: { Authorization: token },
     })
     .then((res) => {
@@ -125,7 +125,7 @@ function removeFromScreen(id) {
 document.getElementById("rzp-button1").addEventListener("click", async (e) => {
   const token = localStorage.getItem("Token");
   const response = await axios.get(
-    "http://184.72.72.11:4001/purchase/premiummembership",
+    "http://3.94.179.87:4001/purchase/premiummembership",
     { headers: { Authorization: token } }
   );
 
@@ -136,7 +136,7 @@ document.getElementById("rzp-button1").addEventListener("click", async (e) => {
     //this handler function will handle the success payment
     handler: async function (response) {
       await axios.post(
-        "http://184.72.72.11:4001/purchase/updatetransactionstatus",
+        "http://3.94.179.87:4001/purchase/updatetransactionstatus",
         {
           order_id: options.order_id,
           payment_id: response.razorpay_payment_id,
@@ -144,7 +144,7 @@ document.getElementById("rzp-button1").addEventListener("click", async (e) => {
         { headers: { Authorization: token } }
       );
       alert("You are a premium user Now");
-      window.location = "http://184.72.72.11:4001/user/form";
+      window.location = "http://3.94.179.87:4001/user/form";
       // const premium = document.getElementById("premium");
       // const p = document.createElement("p");
       // p.textContent = "You are a premium user";
@@ -227,7 +227,7 @@ function getProducts(page) {
   const limitValue = localStorage.getItem("limit");
   axios
     .get(
-      `http://184.72.72.11:4001/user/getDetails?page=${page}&limit=${limitValue}`,
+      `http://3.94.179.87:4001/user/getDetails?page=${page}&limit=${limitValue}`,
       {
         headers: { Authorization: token },
       }

@@ -1,7 +1,7 @@
 document.getElementById("downloadFile").addEventListener("click", async (e) => {
   const token = localStorage.getItem("Token");
   await axios
-    .get("http://184.72.72.11:4001/download", {
+    .get("http://3.94.179.87:4001/download", {
       headers: { Authorization: token },
     })
     .then((response) => {
@@ -20,5 +20,5 @@ document.getElementById("downloadFile").addEventListener("click", async (e) => {
 document
   .getElementById("fileDownloaded")
   .addEventListener("click", async (req, res) => {
-    window.location = "http://184.72.72.11:4001/downloaded/mainPage";
+    window.location = "http://3.94.179.87:4001/downloaded/mainPage";
   });
