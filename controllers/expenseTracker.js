@@ -8,7 +8,7 @@ require("dotenv").config();
 
 exports.getForm = async (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../", "views", "expenseTracker", "trackerForm.html")
+    path.join(__dirname, "../", "views", "ExpenseTracker", "trackerForm.html")
   );
 };
 

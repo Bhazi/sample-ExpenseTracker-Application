@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 exports.getLogin = (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../", "views", "authentication", "signUpPage.html")
+    path.join(__dirname, "../", "views", "Authentication", "signUpPage.html")
   );
   // res.send("hello");
 };

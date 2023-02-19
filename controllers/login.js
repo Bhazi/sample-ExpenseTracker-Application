@@ -6,7 +6,7 @@ require("dotenv").config();
 
 exports.getLogIn = (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../", "views", "authentication", "loginPage.html")
+    path.join(__dirname, "../", "views", "Authentication", "loginPage.html")
   );
 };
 
