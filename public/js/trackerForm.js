@@ -38,9 +38,9 @@ document.getElementById("rowsPerPage").addEventListener("change", (event) => {
 });
 
 window.addEventListener("DOMContentLoaded", async () => {
-  const page = 1;
-  const limitValue = localStorage.getItem("limit");
   try {
+    const page = 1;
+    const limitValue = localStorage.getItem("limit") || 5;
     await axios
       .get(
         `http://3.94.179.87:4001/user/getDetails?page=${page}&limit=${limitValue}`,
