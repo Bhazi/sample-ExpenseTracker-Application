@@ -38,6 +38,7 @@ document.getElementById("rowsPerPage").addEventListener("change", (event) => {
 });
 
 window.addEventListener("DOMContentLoaded", async () => {
+  console.log("consoling");
   try {
     const page = 1;
     const limitValue = localStorage.getItem("limit") || 5;

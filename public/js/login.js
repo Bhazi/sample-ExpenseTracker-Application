@@ -17,10 +17,6 @@ function submiting(e) {
         console.log(response);
         localStorage.setItem("Token", response.data.token);
         window.location = "http://3.94.179.87:4001/user/form";
-        // var message = document.getElementById("message");
-        // var p = document.createElement("p");
-        // p.textContent = response.data.message;
-        // message.appendChild(p);
       })
       .catch((err) => {
         console.log(err);
@@ -33,20 +29,6 @@ function submiting(e) {
         signUpMessageInLoginPage.href = "/";
         signUpMessageInLoginPage.textContent = "click here to sign up";
         message.appendChild(signUpMessageInLoginPage);
-
-        // function poss() {
-        //   new Promise((resolve) => {});
-        // }
-
-        // f();
-        // async function f() {
-        //   return Promise.resolve(
-        //     setTimeout(
-        //       () => (window.location = "http://3.94.179.87:4001/login"),
-        //       1000
-        //     )
-        //   );
-        // }
       });
   }
 }

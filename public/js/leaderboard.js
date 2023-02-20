@@ -8,9 +8,6 @@ document
           // console.log(ress.loginId);
           showOnUserScreens(ress);
         });
-        // .forEach((element) => {
-        // console.log(element);
-        // showOnUserScreen(element);
       })
       .catch((err) => console.log(err));
     // });
